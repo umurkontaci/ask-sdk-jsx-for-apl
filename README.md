@@ -2,6 +2,11 @@
   <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/avs/docs/ux/branding/mark1._TTH_.png">
   <br/>
   <h1 align="center">Alexa Skills Kit SDK - JSX for APL</h1>
+  <p align="center">
+    <a href="https://www.npmjs.com/package/ask-sdk-jsx-for-apl">
+        <img alt="npm" src="https://img.shields.io/npm/v/ask-sdk-jsx-for-apl">
+    </a>
+  </p>
 </p>
 
 **JSX for APL** is a React-based APL templating framework that allows developers to define APL document within the code. By using the React-style JSX/TSX file format, developers can include JSX-based APL components as XML-style definition for the APL and shorten the APL definition code length, making the development more manageable.
@@ -75,10 +80,7 @@ class LaunchIntentHandler {
   handle(handlerInput) {
     const responseBuilder = handlerInput.responseBuilder;
     return responseBuilder
-        .addDirective(
-        new AplDocument({
-            (<LaunchAplDocument />).getDirective();
-        }))
+        .addDirective(new AplDocument(<LaunchAplDocument />).getDirective())
         .speak("Welcome to my first JSX for APL skill")
         .getResponse();
   }
@@ -157,11 +159,7 @@ export class LaunchIntentHandler {
     handle(handlerInput) {
         const responseBuilder = handlerInput.responseBuilder;
         return responseBuilder
-            .addDirective(
-                new AplDocument({
-                    (<LaunchAplDocument />).getDirective();
-                })
-            )
+            .addDirective(new AplDocument(<LaunchAplDocument />).getDirective())
             .speak("Welcome to my first JSX for APL skill!")
             .getResponse();
     }
@@ -258,11 +256,10 @@ export class LaunchIntentHandler {
         }
 
         return responseBuilder
-            .addAplxDocument(
-                new AplDocument({
-                    (<LaunchAplDocument aplParameters={aplParameters}/>)
-                        .getDirective();
-                }))
+            .addDirective(
+                new AplDocument(<LaunchAplDocument aplParameters={aplParameters} />)
+                    .getDirective()
+            )
             .speak("Welcome to my first JSX for APL skill")
             .getResponse();
     }
@@ -363,7 +360,7 @@ class WorkoutTypeIntentHandler {
         const responseBuilder = handlerInput.responseBuilder;
         ... other code logic ...
         return responseBuilder
-            .addAplxDocument(<WorkOutApl ... />)
+            .addDirective(new AplDocument(<WorkOutApl ... />).getDirective())
             .speak('Here\'s a workout!')
             .getResponse();
     }
